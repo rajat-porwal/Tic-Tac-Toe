@@ -125,16 +125,18 @@ function clickGame(gameBoard){
             if(gameWinCheckTrigger(gameBoard)){
                 for(let k=0; k<3; k++){
                     if(rowValuesAreSame(gameBoard2D[k])){
-                        alert('player 1 wins');
+                        alert('Game Over');
                         clearDisplay();
                         break;
                     }
                     else if(columnValuesAreSame(gameBoard2D)){
-                        alert('player 1 wins');
+                        alert('Game Over');
+                        clearDisplay();
                         break;
                     }
                     else if(checkEitherDiagonal(gameBoard2D)){
-                        alert('player1 wins');
+                        alert('Game Over');
+                        clearDisplay();
                         break;
                     }
                 }
