@@ -32,6 +32,10 @@ function convertTo2D(array, numRows, numCols) {
             if (array[i][j] !== firstValue) {
                 break;
             }
+            else if((array[i][j] === firstValue) && firstValue === undefined) {
+                break;
+            }
+
             if(i === array.length -1){
                 return true
             }
@@ -45,8 +49,31 @@ function rowValuesAreSame(row) {
         if (row[i] !== row[0]) {
             return false;
         }
+
+        else if((row[i] === row[0]) && row[0] === undefined){
+            return false;
+        }
     }
     return true;
+}
+
+function checkEitherDiagonal(array) {
+    const length = array.length;
+    let primaryMatch = true;
+    let secondaryMatch = true;
+    const primaryDiagonalValue = array[0][0];
+    const secondaryDiagonalValue = array[0][length - 1];
+    
+    for (let i = 0; i < length; i++) {
+        if (array[i][i] !== primaryDiagonalValue) {
+            primaryMatch = false;
+        }
+        if (array[i][length - i - 1] !== secondaryDiagonalValue) {
+            secondaryMatch = false;
+        }
+    }
+    // Return true if either diagonal matches
+    return primaryMatch || secondaryMatch;
 }
 
 function gameWinCheckTrigger(fixedArray) {
@@ -104,6 +131,10 @@ function clickGame(gameBoard){
                     }
                     else if(columnValuesAreSame(gameBoard2D)){
                         alert('player 1 wins');
+                        break;
+                    }
+                    else if(checkEitherDiagonal(gameBoard2D)){
+                        alert('player1 wins');
                         break;
                     }
                 }
